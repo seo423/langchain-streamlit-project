@@ -16,7 +16,7 @@ logging.langsmith("Perplexity")
 
 st.title("Perplexity 💬")
 st.markdown(
-    "LLM에 **웹검색 기능** 을 추가한 [Perplexity](https://www.perplexity.ai/) 클론 입니다. _멀티턴_ 대화를 지원합니다."
+    "A Perplexity clone (https://www.perplexity.ai/) with web search capabilities powered by an LLM. It supports multi-turn conversations."
 )
 
 # 대화기록을 저장하기 위한 용도로 생성
@@ -34,39 +34,37 @@ if "include_domains" not in st.session_state:
 # 사이드바 생성
 with st.sidebar:
     # 초기화 버튼 생성
-    clear_btn = st.button("대화 초기화")
-
-    st.markdown("made by [@teddynote](https://youtube.com/c/teddynote)")
+    clear_btn = st.button("Clear Conversation")
 
     # 모델 선택 메뉴
-    selected_model = st.selectbox("LLM 선택", ["gpt-4o", "gpt-4o-mini"], index=0)
+    selected_model = st.selectbox("Select an LLM", ["gpt-4o", "gpt-4o-mini"], index=0)
 
     # 검색 결과 개수 설정
-    search_result_count = st.slider("검색 결과", min_value=1, max_value=10, value=3)
+    search_result_count = st.slider("Adjust the number of search results", min_value=1, max_value=10, value=3)
 
     # include_domains 설정
-    st.subheader("검색 도메인 설정")
-    search_topic = st.selectbox("검색 주제", ["general", "news"], index=0)
-    new_domain = st.text_input("추가할 도메인 입력")
+    st.subheader("Search Domain Settings")
+    search_topic = st.selectbox("Search Topic", ["general", "news"], index=0)
+    new_domain = st.text_input("Enter a Domain to Add")
     col1, col2 = st.columns([3, 1])
     with col1:
-        if st.button("도메인 추가", key="add_domain"):
+        if st.button("Add Domain", key="add_domain"):
             if new_domain and new_domain not in st.session_state["include_domains"]:
                 st.session_state["include_domains"].append(new_domain)
 
     # 현재 등록된 도메인 목록 표시
-    st.write("등록된 도메인 목록:")
+    st.write("Registered Domains:")
     for idx, domain in enumerate(st.session_state["include_domains"]):
         col1, col2 = st.columns([3, 1])
         with col1:
             st.text(domain)
         with col2:
-            if st.button("삭제", key=f"del_{idx}"):
+            if st.button("Delete", key=f"del_{idx}"):
                 st.session_state["include_domains"].pop(idx)
                 st.rerun()
 
     # 설정 버튼
-    apply_btn = st.button("설정 완료", type="primary")
+    apply_btn = st.button("Apply Settings", type="primary")
 
 
 @dataclass
@@ -118,7 +116,7 @@ if clear_btn:
 print_messages()
 
 # 사용자의 입력
-user_input = st.chat_input("궁금한 내용을 물어보세요!")
+user_input = st.chat_input("Ask me anything!")
 
 # 경고 메시지를 띄우기 위한 빈 영역
 warning_msg = st.empty()
@@ -179,4 +177,4 @@ if user_input:
                 )
             add_message("assistant", agent_answer)
     else:
-        warning_msg.warning("사이드바에서 설정을 완료해주세요.")
+        warning_msg.warning("Please complete the settings in the sidebar.")
