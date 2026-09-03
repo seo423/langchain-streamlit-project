@@ -62,4 +62,3 @@ Set your API keys in `.env` before running the application.
 
 Deployed with **Streamlit Community Cloud**.
 
-**[Live Application →](https://langchain-proj.streamlit.app/)**
