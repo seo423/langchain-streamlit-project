@@ -1,36 +1,65 @@
-## Installation
+# Perplexity Clone
 
-Activate the virtual environment using the following command:
+An AI-powered search assistant inspired by Perplexity, built with **LangChain, LangGraph, OpenAI, and Streamlit**.
 
-```bash
-poetry shell
+## 🚀 Live Demo
+
+**[Try the application](https://langchain-proj.streamlit.app/)**
+
+The deployed application can be accessed directly through a web browser without local installation.
+
+## ✨ Features
+
+* 🔎 **Agentic Web Search** — LLM-powered agent that can search the web and incorporate real-time information into responses
+* 💬 **Multi-turn Conversations** — Maintains conversation context across multiple queries
+* ⚡ **Streaming Responses** — Displays AI-generated responses in real time
+* ⚙️ **Search Customization** — Configure search result count, topics, and domains
+* 🤖 **LLM Selection** — Supports GPT-4o and GPT-4o-mini
+* 📊 **LangSmith** — LLM tracing and observability
+
+## 🏗️ Architecture
+
+```text
+User Query
+    ↓
+LLM Agent
+    ↓
+Web Search Tool
+    ↓
+Search Results
+    ↓
+LLM
+    ↓
+Streaming Response
 ```
 
-Install the required packages:
+## 🛠️ Tech Stack
+
+**LangChain · LangGraph · OpenAI · Streamlit · LangSmith**
+
+## 📁 Project Structure
+
+```text
+├── main.py
+├── modules/
+│   ├── agent.py
+│   ├── handler.py
+│   └── tools.py
+├── pyproject.toml
+└── README.md
+```
+
+## ▶️ Run Locally
 
 ```bash
 poetry install
-```
-
-## Run
-
-Run the Streamlit application with:
-
-```bash
 poetry run streamlit run main.py
 ```
 
-## Deploy to Streamlit
+Set your API keys in `.env` before running the application.
 
-1. Go to [Streamlit Community Cloud](https://share.streamlit.io/).
-2. Create an account or sign in.
-3. Click the **"Create app"** button in the top-right corner.
-4. Click **"Deploy a public app from GitHub"**.
-5. Enter your **Repository** URL.
-6. Set the **Main file path** to `main.py`.
-7. Click **"Advanced settings"**.
+## ☁️ Deployment
 
-   * Select **Python 3.11** as the Python version.
-   * Enter your API key in **Secrets**.
-   * Click **"Save"**.
-8. Click **"Deploy"**.
+Deployed with **Streamlit Community Cloud**.
+
+**[Live Application →](https://langchain-proj.streamlit.app/)**
